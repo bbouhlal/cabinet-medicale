@@ -71,7 +71,6 @@ public class ConsultationM implements Consultation{
 	
 	
 	
-	
 	@Override
 	public int compareTo(Consultation o) {
 		// TODO Auto-generated method stub
