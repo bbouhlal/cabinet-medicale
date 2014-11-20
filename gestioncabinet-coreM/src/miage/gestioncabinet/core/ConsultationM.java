@@ -15,15 +15,57 @@ import miage.gestioncabinet.api.Traitement;
 
 public class ConsultationM implements Consultation{
 
-	private Long id;
-	private Calendar dateRdv;
-	private Date heureDebut;
-	private Date heureFin;
+	/**
+	 *Identifiant par défaut 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+
+	
+	
+	/**
+	 * Date de debut du la consultation
+	 */
+	private Calendar heureDebut;
+	
+	/**
+	 * Date de fin de la consultation
+	 */
+	private Calendar heureFin;
+	
+	
+	/**
+	 * Compte rendu du médecin
+	 */
 	private String compteRendu;
+	
+	/**
+	 * La liste des traitements
+	 */
 	private List<Traitement> traitements;
+	
+	/***
+	 * La liste des interactions
+	 */
 	private List<Interaction> interactions;
+	
+	/***
+	 * La liste des produits
+	 */
+	private List<Produit>	produits;
+	
+	/**
+	 * Le médecin effectuant la consultation
+	 */
 	private Medecin medecin;
+	
 	private Patient patient;
+
+	
+	
+	
+	
 	
 	
 	@Override
@@ -51,62 +93,57 @@ public class ConsultationM implements Consultation{
 	}
 	@Override
 	public void setMedecin(Medecin medecin) {
-		// TODO Auto-generated method stub
-		
+		this.medecin = medecin;
 	}
+	
 	@Override
 	public Calendar getDebut() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.heureDebut;
 	}
 	@Override
 	public void setDebut(Calendar date) {
-		// TODO Auto-generated method stub
-		
+		this.heureDebut = date;
 	}
 	@Override
 	public Calendar getFin() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.heureFin;
 	}
 	@Override
 	public void setFin(Calendar date) {
-		// TODO Auto-generated method stub
-		
+		this.heureFin = date;
 	}
+	
 	@Override
 	public String getCompteRendu() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.compteRendu;
 	}
 	@Override
 	public void setCompteRendu(String texte) {
-		// TODO Auto-generated method stub
-		
+		this.compteRendu = texte;
 	}
+	
 	@Override
 	public List<Traitement> getPrescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.traitements;
 	}
 	@Override
 	public Boolean ajouterTraitement(Produit produit) {
-		// TODO Auto-generated method stub
-		return null;
+		//Création de l'objet traitement
+		Traitement traitement = new TraitementM();
+		traitement.setProduit(produit);
+		return this.traitements.add(traitement);
 	}
 	@Override
 	public Boolean supprimerTraitement(Traitement medicament) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.traitements.remove(medicament);
 	}
 	@Override
 	public List<Interaction> getInteractions() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.interactions;
 	}
 	@Override
 	public void setInteractions(List<Interaction> interactions) {
-		// TODO Auto-generated method stub
+		this.interactions = interactions;
 		
 	}
 	
