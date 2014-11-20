@@ -9,6 +9,7 @@ public class MedecinM extends UtilisateurM implements Medecin{
 	public String getRPPS() {
 		return this.rpps;
 	}
+	
 	public void setRPPS(String rpps) {
 		this.rpps = rpps;
 	}
