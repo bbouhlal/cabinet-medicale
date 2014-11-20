@@ -1,7 +1,11 @@
 package miage.gestioncabinet.core;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import javax.ejb.Remote;
+import javax.ejb.Stateful;
 
 import miage.gestioncabinet.api.Consultation;
 import miage.gestioncabinet.api.GestionCabinetException;
@@ -12,6 +16,9 @@ import miage.gestioncabinet.api.Utilisateur;
 
 // !Basée sur PlanningRemoteService.java
 
+
+@Remote(PlanningRemoteService.class)
+@Stateful
 public class PlanningService implements PlanningRemoteService {
 
 	private Utilisateur utilisateur;
@@ -19,107 +26,96 @@ public class PlanningService implements PlanningRemoteService {
 	private Calendar dateFin;
 	private Medecin medecin;
 	private Consultation rdvCourant;
-	private List<Consultation> rdv;
+	private List<Consultation> listRdv;
+	private List<Medecin> listMedecin;
+	private List<Patient> listPatient;
 	
-
-	public PlanningService(Utilisateur utilisateur, Calendar dateDebut,
-			Calendar dateFin, Medecin medecin) {
-		super();
-		this.utilisateur = utilisateur;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-		this.medecin = medecin;
+	
+	
+	public PlanningService(){
+		this.listRdv = new ArrayList<Consultation>();
 	}
-
 	
 	@Override
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
+	public Utilisateur getUtilisateur() {		
+		return this.utilisateur;
 	}
 
 	@Override
 	public List<Medecin> rechercherMedecins() throws GestionCabinetException {
-		// TODO Auto-generated method stub
-		return null;
+		return listMedecin;
 	}
 
 	@Override
 	public List<Patient> rechercherPatients(String nom, String prenom,
 			Calendar dateNaissance) throws GestionCabinetException {
-		// TODO Auto-generated method stub
-		return null;
+		return this.listPatient;
 	}
 
 	@Override
 	public Calendar getDateDebut() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.rdvCourant.getDebut();
 	}
 
 	@Override
 	public void setDateDebut(Calendar date) {
-		// TODO Auto-generated method stub
-		
+		this.rdvCourant.setDebut(date);
 	}
 
 	@Override
 	public Calendar getDateFin() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.rdvCourant.getFin();
 	}
 
 	@Override
 	public void setDateFin(Calendar date) {
-		// TODO Auto-generated method stub
-		
+		this.rdvCourant.setFin(date);
 	}
 
 	@Override
 	public Medecin getMedecin() {
-		// TODO Auto-generated method stub
-		return null;
+		if ( this.medecin == null)	this.medecin = new MedecinM();
+		return this.medecin;
 	}
 
 	@Override
 	public void setMedecin(Medecin medecin) {
-		// TODO Auto-generated method stub
-		
+		this.medecin = medecin;
 	}
 
 	@Override
 	public List<Consultation> listerRdv() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.listRdv;
 	}
 
 	@Override
 	public Consultation getRdvCourant() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.rdvCourant;
 	}
 
 	@Override
 	public void setRdvCourant(Consultation rdv) {
-		// TODO Auto-generated method stub
-		
+		this.rdvCourant = rdv;
 	}
 
 	@Override
 	public Consultation creerRdv(Calendar date) {
-		// TODO Auto-generated method stub
-		return null;
+		Consultation rdvCourant =  this.getRdvCourant();
+		rdvCourant.setDebut(date);
+		return rdvCourant;
 	}
 
 	@Override
 	public Consultation enregistrerRdv() throws GestionCabinetException {
-		// TODO Auto-generated method stub
-		return null;
+		Consultation rdvCournat = this.getRdvCourant();
+		this.listerRdv().add(rdvCournat);
+		return rdvCournat;
 	}
 
 	@Override
 	public void supprimerRdv() throws GestionCabinetException {
-		// TODO Auto-generated method stub
-		
+		Consultation rdvCournat = this.getRdvCourant();
+		this.listerRdv().remove(rdvCournat);
 	}
 
 }
