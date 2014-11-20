@@ -4,27 +4,35 @@ import java.util.Calendar;
 
 import miage.gestioncabinet.api.Patient;
 
+
+
 public class PatientM extends PersonneM implements Patient {
+	
+	private Calendar dateNaissance;
 
 	@Override
 	public Calendar getDateNaissance() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.dateNaissance;
 	}
 
 	@Override
 	public void setDateNaissance(Calendar dateNaissance) {
-		// TODO Auto-generated method stub
+		this.dateNaissance = dateNaissance;
 		
 	}
 
 	@Override
 	public Integer getAge() {
-		// TODO Auto-generated method stub
-		return null;
+		Calendar curr = Calendar.getInstance();
+	    Calendar birth = dateNaissance;
+	    int yeardiff = curr.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
+	    curr.add(Calendar.YEAR,-yeardiff);
+	    if(birth.after(curr))
+	    {
+	      yeardiff = yeardiff - 1;
+	    }
+	    return yeardiff;
 	}
 
-
-
-	
+ 	
 }
