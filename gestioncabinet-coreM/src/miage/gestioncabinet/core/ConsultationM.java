@@ -60,6 +60,10 @@ public class ConsultationM implements Consultation{
 	 */
 	private Medecin medecin;
 	
+	
+	/***
+	 * Le patient malade
+	 */
 	private Patient patient;
 
 	
