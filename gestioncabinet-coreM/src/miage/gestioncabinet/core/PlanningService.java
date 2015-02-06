@@ -30,8 +30,7 @@ public class PlanningService implements PlanningRemoteService {
 	private List<Medecin> listMedecin;
 	private List<Patient> listPatient;
 	
-	
-	
+		
 	public PlanningService(){
 		this.listRdv = new ArrayList<Consultation>();
 		this.rdvCourant = new ConsultationM();
