@@ -4,4 +4,5 @@ package miage.gestioncabinet.client;
 
 public class ConsultationTestClient {
 
+	
 }

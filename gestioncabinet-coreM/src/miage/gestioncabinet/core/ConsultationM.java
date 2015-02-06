@@ -13,7 +13,7 @@ import miage.gestioncabinet.api.Traitement;
 public class ConsultationM implements Consultation{
 
 	/**
-	 *Identifiant par défaut 
+	 *Identifiant par dï¿½faut 
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class ConsultationM implements Consultation{
 
 
 	/**
-	 * Compte rendu du médecin
+	 * Compte rendu du mï¿½decin
 	 */
 	private String compteRendu;
 
@@ -46,7 +46,7 @@ public class ConsultationM implements Consultation{
 
 
 	/**
-	 * Le médecin effectuant la consultation
+	 * Le mï¿½decin effectuant la consultation
 	 */
 	private Medecin medecin;
 
@@ -94,6 +94,9 @@ public class ConsultationM implements Consultation{
 
 	@Override
 	public Calendar getDebut() {
+		if(heureDebut == null)
+			heureDebut = Calendar.getInstance();
+		heureDebut.set(Calendar.HOUR_OF_DAY, 9);
 		return this.heureDebut;
 	}
 	@Override
@@ -102,6 +105,8 @@ public class ConsultationM implements Consultation{
 	}
 	@Override
 	public Calendar getFin() {
+		if(heureFin == null) heureFin = Calendar.getInstance();
+		heureFin.set(Calendar.HOUR_OF_DAY, 9);
 		return this.heureFin;
 	}
 	@Override
@@ -124,7 +129,7 @@ public class ConsultationM implements Consultation{
 	}
 	@Override
 	public Boolean ajouterTraitement(Produit produit) {
-		//Création de l'objet traitement
+		//Crï¿½ation de l'objet traitement
 		Traitement traitement = new TraitementM();
 		traitement.setProduit(produit);
 		return this.traitements.add(traitement);

@@ -12,7 +12,6 @@ import miage.gestioncabinet.api.PlanningRemoteService;
 import com.novarem.jndi.ServiceLocator;
 import com.novarem.jndi.ServiceLocatorException;
 
-
 /**
  * Programme client permettant de tester le planning.
  * Déployer sur JBoss 7 l'application JEE de gestion du cabinet
@@ -34,7 +33,7 @@ public class PlanningTestClient {
 	 * @see java.lang.Object#Object()
 	 */
 	public PlanningTestClient() {
-		String service = "ejb:gestion-cabinet-P2/gestioncabinet-coreM//PlanningService!miage.gestioncabinet.api.PlanningRemoteService?stateful";
+		String service = "ejb:gestion-cabinet/gestioncabinet-coreM//PlanningService!miage.gestioncabinet.api.PlanningRemoteService?stateful";
 		try{
 			ServiceLocator locator = ServiceLocator.INSTANCE;
 			this.ejb = (PlanningRemoteService) locator.getRemoteInterface(service);
@@ -52,7 +51,7 @@ public class PlanningTestClient {
 		
 		try{
 			Medecin medecin = app.ejb.getMedecin();
-			System.out.println("Sélection du médecin courant : "+medecin);
+			System.out.println("Sélection du médecin courant : "+ medecin);
 			
 	
 			DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM);

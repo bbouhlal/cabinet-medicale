@@ -7,5 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.jboss.ide.eclipse.as.classpath.core.ejb3.classpathContainer/JBoss 7.1 Runtime Server"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

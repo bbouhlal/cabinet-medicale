@@ -14,7 +14,7 @@ import miage.gestioncabinet.api.Patient;
 import miage.gestioncabinet.api.PlanningRemoteService;
 import miage.gestioncabinet.api.Utilisateur;
 
-// !Basée sur PlanningRemoteService.java
+// !Bas�e sur PlanningRemoteService.java
 
 
 @Remote(PlanningRemoteService.class)
@@ -34,6 +34,7 @@ public class PlanningService implements PlanningRemoteService {
 	
 	public PlanningService(){
 		this.listRdv = new ArrayList<Consultation>();
+		this.rdvCourant = new ConsultationM();
 	}
 	
 	@Override
@@ -54,7 +55,9 @@ public class PlanningService implements PlanningRemoteService {
 
 	@Override
 	public Calendar getDateDebut() {
-		return this.rdvCourant.getDebut();
+		if (dateDebut == null) dateDebut = Calendar.getInstance();
+		dateDebut.set(Calendar.HOUR_OF_DAY, 9);
+		return this.dateDebut;
 	}
 
 	@Override
@@ -64,7 +67,9 @@ public class PlanningService implements PlanningRemoteService {
 
 	@Override
 	public Calendar getDateFin() {
-		return this.rdvCourant.getFin();
+		if (dateFin == null) dateFin = Calendar.getInstance();
+		dateFin.set(Calendar.HOUR_OF_DAY, 9);
+		return this.dateFin;
 	}
 
 	@Override
@@ -107,15 +112,15 @@ public class PlanningService implements PlanningRemoteService {
 
 	@Override
 	public Consultation enregistrerRdv() throws GestionCabinetException {
-		Consultation rdvCournat = this.getRdvCourant();
-		this.listerRdv().add(rdvCournat);
-		return rdvCournat;
+		Consultation rdvCourant = this.getRdvCourant();
+		this.listerRdv().add(rdvCourant);
+		return rdvCourant;
 	}
 
 	@Override
 	public void supprimerRdv() throws GestionCabinetException {
-		Consultation rdvCournat = this.getRdvCourant();
-		this.listerRdv().remove(rdvCournat);
+		Consultation rdvCourant = this.getRdvCourant();
+		this.listerRdv().remove(rdvCourant);
 	}
 
 }
