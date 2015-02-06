@@ -7,12 +7,19 @@ import java.util.List;
 
 
 
+
+import javax.ejb.Remote;
+import javax.ejb.Stateful;
+
 import miage.gestioncabinet.api.Consultation;
 import miage.gestioncabinet.api.ConsultationRemoteService;
 import miage.gestioncabinet.api.GestionCabinetException;
+import miage.gestioncabinet.api.PlanningRemoteService;
 import miage.gestioncabinet.api.Produit;
 
 
+@Remote(ConsultationRemoteService.class)
+@Stateful
 public class ConsultationService implements ConsultationRemoteService {
 
 	private Consultation consultation;
@@ -21,6 +28,7 @@ public class ConsultationService implements ConsultationRemoteService {
 	
 	
 	public ConsultationService(){
+		this.listConsultation = new ArrayList<Consultation>();
 		this.produits = new ArrayList<Produit>();
 	}
 	
